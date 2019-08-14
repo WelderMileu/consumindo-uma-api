@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="text-muted mb-5 mt-3 text-uppercase">
+                Aplicação Simples Consumindo uma API<br>
+                <span style="font-size: .4em">
+                    Criando um controle de usuarios
+                </span>
+            </h1>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="bg-dark text-light" style="font-weight: bold;">
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Saldo</td>
+                    <td>Transição</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% mostrar.map((elem)=>{ %>
+                <tr>
+                    <td style="font-weight: bold;">N° <%- elem.Id %></td>
+                    <td><%- elem.name %></td>
+                    <td><%- elem.saldo.toLocaleString('pt-br',{style:"currency",currency:"BRL"}) %></td>
+                    <td>
+                        <button class="btn btn-success">
+                            <i class="fa fa-money"></i>
+                            Sacar
+                        </button>
+                        <button class="btn btn-dark">
+                            <i class="fa fa-telegram"></i>
+                            Depositar
+                        </button>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <div class="mb-5" style="width:300px;">
+            <p class="text-muted" style="font-size: 1.3em">Porcentagem de Contribuição</p>
+            <% mostrar.map((elem)=> { %>
+            <span><%- elem.name %></span>
+            <div class="progress" style="height: 20px">
+                <div class="progress-bar bg-success" style="width:<%-  elem.porcentagem * 3 %>px;">
+                    <%-  elem.porcentagem %> %
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        <div class="mb-5">
+            <h2 class="text-muted text-uppercase">Observação</h2>
+            <p class="col-sm-5 mt-4">
+                Essa aplicação foi feita para meios de ensino de seu ator,
+                não deve ser usado como base em uma aplicação real, pois
+                o mesmo utiliza uma <em>API</em> para extraçãoes de dados.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
